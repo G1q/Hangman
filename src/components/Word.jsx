@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Word = ({ word, correct }) => {
 	return (
 		<div className="word">

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Message = ({ message, reset }) => {
 	return (
 		<div className="message">
