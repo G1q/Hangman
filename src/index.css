@@ -1,0 +1,237 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Inter, system-ui, sans-serif;
+	background-color: #333;
+	color: #fff;
+	max-height: 100vh;
+}
+
+h1 {
+	text-align: center;
+}
+
+.game {
+	max-width: 1200px;
+	margin-inline: auto;
+	margin-block: 2rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding-inline: 3rem;
+}
+
+.game > * {
+	min-height: 350px;
+}
+
+.word {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.letter {
+	text-align: center;
+	font-weight: 700;
+	width: 40px;
+	height: 4rem;
+	font-size: 3rem;
+	border-bottom: 5px solid #fff;
+}
+
+.human {
+	display: grid;
+	place-items: center;
+}
+
+.human__all {
+	width: 50%;
+	height: 80%;
+	border-right: 5px solid white;
+	border-top: 5px solid white;
+	position: relative;
+}
+
+.human__head {
+	width: 50px;
+	aspect-ratio: 1;
+	border: 5px solid yellow;
+	border-radius: 50%;
+	position: absolute;
+	top: 30px;
+}
+
+.human__head::before {
+	content: '';
+	position: absolute;
+	width: 5px;
+	height: 30px;
+	background-color: red;
+	top: -35px;
+	left: 18px;
+}
+
+.human__body {
+	position: absolute;
+	width: 5px;
+	height: 80px;
+	background-color: yellow;
+	left: 23px;
+	top: 80px;
+}
+
+.human__arm--left,
+.human__arm--right,
+.human__leg--left,
+.human__leg--right {
+	position: absolute;
+	width: 5px;
+	height: 50px;
+	background-color: yellow;
+	top: 90px;
+}
+
+.human__leg--left,
+.human__leg--right {
+	top: 150px;
+}
+
+.human__arm--left,
+.human__leg--left {
+	left: 5px;
+	rotate: 45deg;
+}
+
+.human__arm--right,
+.human__leg--right {
+	left: 40px;
+	rotate: 135deg;
+}
+
+@media (max-width: 500px) {
+	.game {
+		display: flex;
+		flex-direction: column-reverse;
+		margin-block: 0;
+	}
+	.game > .word {
+		min-height: 150px;
+	}
+
+	.game > .human {
+		min-height: 200px;
+	}
+
+	.letter {
+		width: 20px;
+		height: 2rem;
+		font-size: 1.5rem;
+		border-bottom: 2px solid #fff;
+	}
+}
+
+.alphabet {
+	--button-w: 50px;
+	width: 80%;
+	margin-inline: auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(calc(var(--button-w)), 1fr));
+	gap: 1rem;
+}
+
+.alphabet > button {
+	width: var(--button-w);
+	aspect-ratio: 1;
+	background-color: #888;
+	display: grid;
+	place-items: center;
+	font-size: 2rem;
+	border-radius: 10px;
+	font-weight: 700;
+	cursor: pointer;
+	border: none;
+}
+
+@media (max-width: 500px) {
+	.alphabet {
+		gap: 0.5rem;
+	}
+	.alphabet > button {
+		--button-w: 30px;
+		font-size: 1.25rem;
+	}
+}
+
+.alphabet > button:active {
+	background-color: yellow;
+}
+
+.alphabet > button[data-guess] {
+	pointer-events: none;
+	opacity: 0.5;
+	background-color: #444;
+	color: var(--clr);
+}
+
+.alphabet > button[data-guess='false'] {
+	--clr: crimson;
+}
+
+.alphabet > button[data-guess='true'] {
+	--clr: limegreen;
+}
+
+.message {
+	max-width: 1200px;
+	margin-inline: auto;
+	margin-block: 2rem;
+	padding-inline: 3rem;
+	text-align: center;
+}
+
+.message p {
+	font-size: 3rem;
+	font-weight: 700;
+	color: var(--color);
+	margin-bottom: 1rem;
+}
+
+.message button {
+	border: none;
+	padding: 0.5rem 1rem;
+	background-color: royalblue;
+	color: white;
+	border-radius: 5px;
+	font: inherit;
+	font-size: 1.25rem;
+	cursor: pointer;
+}
+
+.message button:is(:hover, :focus-visible),
+.score button:is(:hover, :focus-visible) {
+	background-color: hsl(225, 73%, 47%);
+}
+
+.score {
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	font-size: 1.25rem;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	width: 10rem;
+}
+
+.score button {
+	border: none;
+	padding: 0.25rem;
+	background-color: royalblue;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
